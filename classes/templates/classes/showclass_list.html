@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Virtual Stithians Show 2020{% endblock %}
+
+{% block breadcrumbs %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb mb-0 bg-white">
+        <li class="breadcrumb-item active" aria-current="page">Home</li>
+    </ol>
+</nav>
+{% endblock %}
+{% block content %}
+
+{% for class in showclass_list %}
+{% if forloop.first or forloop.counter0|divisibleby:"3" %}
+<div class="row mb-3">
+{% endif %}
+    <div class="col-sm-4">
+        <div class="card">
+            <img src="{{class.thumbnail.url}}" class="card-img-top" alt="{{class.name}}">
+            <div class="card-body">
+                <h5 class="card-title">{{class.name}}</h5>
+                <p class="card-text">{{class.description}}</p>
+                <a href="/class/{{class.slug}}" class="btn btn-primary">View entries</a>
+            </div>
+        </div>
+    </div>
+{% if forloop.last or forloop.counter|divisibleby:"3" %}
+</div>
+{% endif %}
+{% endfor %}
+
+<div class="card mb-3 border-dark">
+    <div class="card-header">To Enter</div>
+        <div class="card-body text-dark">
+            <p class="card-text">Email <a href='mailto:xyz@abc.com'>xyz@abc.com</a> with you name, Age if entering an under 18 class, a contact email address and a photo of your entry. Please state if you would like to receive future schedules to the email address provided.</p>
+            <p class="card-text">Photos submitted will be uploaded to this website to be judged, please state if you do not wish for you photo to be used for any other purposes, e.g. on the main show website in future years.</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ object.name }}{% endblock %}
+
+{% block breadcrumbs %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb mb-0 bg-white">
+        <li class="breadcrumb-item"><a href='/'>Home</a></li>
+        <li class="breadcrumb-item"><a href='/class/{{object.show_class.slug}}'>{{object.show_class.name}}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{object.title}}</li>
+    </ol>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-1 d-flex align-items-center">
+        {% if object.previous_entry %}
+        <a href="/entry/{{object.previous_entry.pk}}#img"><img src="{% static "classes/nav_previous.png" %}" alt="Previous entry" class="img-responsive"/></a>
+        {% endif %}
+    </div>
+    <div class="col-md-10">
+        <a id="img"/>
+        <div style="display:inline-block;height:100vh;width:100%;text-align:center">
+            <img src="{{object.img.url}}" alt="{{object.caption}}" style="height:100%;vertical-align:top">
+        </div>
+        <div>
+            <h5>{{object.title}}</h5>
+            <p>{{object.caption}}</p>
+            <p><small class="text-muted">{{object.modified}}</small></p>
+        </div>
+    </div>
+    <div class="col-md-1 d-flex align-items-center">
+        {% if object.next_entry %}
+        <a href="/entry/{{object.next_entry.pk}}#img"><img src="{% static "classes/nav_next.png"%}" alt="Next entry" class="img-responsive"/></a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

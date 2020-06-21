@@ -1,0 +1,29 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static "style.css" %}">
+        {% block scripts %}{% endblock %}
+    </head>
+    <body>
+    {% block breadcrumbs %}{% endblock %}
+{% block header %}
+<div class='container-fluid' style='height: 200px;background-image: url("{% static "Sky.jpg" %}");background-size: cover;background-position:center'>
+<div class='row'>
+    <img src="{% static "Oval Logo.gif" %}" alt="Stithians Show" class="mx-auto d-block" style='width: 300px'/>
+</div>
+</div>
+{% endblock %}
+        <div class="container-fluid">
+{% block content %}{% endblock %}
+        </div>
+{% block footer %}{% endblock %}
+        <div class="container-fluid text-white pt-3 pb-2 dark-blue-background">
+            <p class="text-center">Copyright &copy; 2020 Virtual Stithians Show</p>
+        </div>
+    </body>
+</html>
