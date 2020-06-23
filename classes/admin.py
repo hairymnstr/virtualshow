@@ -1,13 +1,19 @@
 from django.contrib import admin
-from classes.models import ShowClass, ClassEntry
+from classes.models import ShowClass, ClassEntry, EntryImage
 # Register your models here.
+
+class EntryImageInline(admin.TabularInline):
+    model = EntryImage
+    readonly_fields = ('preview_tag',)
+    fields = ('img', ('thumbnail', 'preview_tag'))
 
 class ClassEntryAdmin(admin.ModelAdmin):
     model = ClassEntry
-    readonly_fields = ('preview_tag', 'modified', 'created')
-    fields = ('img', ('thumbnail', 'preview_tag'), 'title', 'caption', ('created', 'modified'), 'show_class', 'entrant', 'age', 'comments')
+    readonly_fields = ('modified', 'created')
+    fields = ('title', 'caption', ('created', 'modified'), 'show_class', 'entry_no', 'entrant', 'age', 'comments')
     ordering = ('-created',)
-    list_display = ('title', 'entrant', 'age', 'modified','show_class')
+    list_display = ('title', 'entrant', 'age', 'modified','show_class', 'entry_no')
+    inlines = [EntryImageInline]
 
 class ShowClassAdmin(admin.ModelAdmin):
     model = ShowClass
