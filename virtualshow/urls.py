@@ -24,9 +24,9 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^class/(?P<slug>[-\w]+)/?$', EntryList.as_view()),
     url(r'^$', ClassList.as_view()),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
 
 if settings.DEBUG:
     urlpatterns += [
         url(r'^static/(?P<path>.*)$', views.serve),
-    ]
+    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
