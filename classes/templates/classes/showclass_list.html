@@ -13,15 +13,16 @@
 
 {% for class in showclass_list %}
 {% if forloop.first or forloop.counter0|divisibleby:"3" %}
-<div class="row mb-3">
+<div class="row">
 {% endif %}
-    <div class="col-sm-4">
+    <div class="col-sm-4 mb-4">
         <div class="card">
-            <img src="{{class.thumbnail.url}}" class="card-img-top" alt="{{class.name}}">
+            <a href="/class/{{class.slug}}">
+                <img src="{{class.thumbnail.url}}" class="card-img-top" alt="{{class.name}}" style="width:100%;height:50vh;object-fit:cover">
+            </a>
             <div class="card-body">
                 <h5 class="card-title">{{class.name}}</h5>
                 <p class="card-text">{{class.description}}</p>
-                <a href="/class/{{class.slug}}" class="btn btn-primary">View entries</a>
             </div>
         </div>
     </div>
@@ -29,14 +30,5 @@
 </div>
 {% endif %}
 {% endfor %}
-
-<div class="card mb-3 border-dark">
-    <div class="card-header">To Enter</div>
-        <div class="card-body text-dark">
-            <p class="card-text">Email <a href='mailto:xyz@abc.com'>xyz@abc.com</a> with you name, Age if entering an under 18 class, a contact email address and a photo of your entry. Please state if you would like to receive future schedules to the email address provided.</p>
-            <p class="card-text">Photos submitted will be uploaded to this website to be judged, please state if you do not wish for you photo to be used for any other purposes, e.g. on the main show website in future years.</p>
-        </div>
-    </div>
-</div>
 
 {% endblock %}

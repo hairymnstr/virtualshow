@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}{{ object.name }}{% endblock %}
+{% block title %}Virtual Stithians Show - {{ showclass.name }}{% endblock %}
 {% block scripts %}<link href="{% static "dist/photoswipe.css"%}?v=4.1.3-1.0.4" rel="stylesheet" />
     <link href="{% static "dist/default-skin/default-skin.css"%}?v=4.1.3-1.0.4" rel="stylesheet" />
     
@@ -17,23 +17,24 @@
 {% endblock %}
 
 {% block content %}
-<h2>{{object.name}}</h2>
-<p>{{object.description}}</p>
+<h2>{{showclass.name}}</h2>
+<p>{{showclass.description}}</p>
 
 <div id='showclass-gallery' class='showclass-gallery'>
 {% for entry in entries %}
 {% if forloop.counter0|divisibleby:"3" %}
-<div class='row mb-4'>
+<div class='row'>
 {% endif %}
-<div class='col-4'>
+<div class='col-sm-4 mb-4'>
     <div class='card'>
         <a href='{{entry.img.url}}' data-size='{{entry.img.width}}x{{entry.img.height}}' data-med='{{entry.thumbnail.url}}' data-med-size='{{entry.thumbnail.width}}x{{entry.thumbnail.height}}'>
-            <img src='{{entry.thumbnail.url}}' alt='{{entry.entry.caption}}' class='card-img-top' style='width:100%;height:25vw;object-fit:cover'/>
+            <img src='{{entry.thumbnail.url}}' alt='{{entry.entry.caption}}' class='card-img-top' style='width:100%;height:50vh;object-fit:cover'/>
         </a>
         <div class='card-body'>
             <h5 class='card-title'>{{entry.entry.title}}</h5>
             <p class='card-text'>{{entry.entry.caption}}</p>
             <p class='card-text'><small class='text-muted'>Entry no. {{entry.entry.entry_no}}{% if entry.entry.entryimage_set.all.count > 1 %}, picture {{entry.index_in_entry}} of {{entry.entry.entryimage_set.all.count}}{% endif %}</small></p>
+            {% if showclass.show_age %}<p class='card-text'><small class='text-muted'>Age: {{entry.entry.age}}</small></p>{% endif %}
         </div>
     </div>
 </div>

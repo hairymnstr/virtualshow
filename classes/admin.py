@@ -18,7 +18,7 @@ class ClassEntryAdmin(admin.ModelAdmin):
 class ShowClassAdmin(admin.ModelAdmin):
     model = ShowClass
     readonly_fields = ('preview_tag',)
-    fields = ('img', ('thumbnail', 'preview_tag'), 'name', 'slug', 'description')
+    fields = ('img', ('thumbnail', 'preview_tag'), 'name', 'slug', 'description', 'show_age')
     list_display = ('name',)
 
 admin.site.register(ClassEntry, ClassEntryAdmin)

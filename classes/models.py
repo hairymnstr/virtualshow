@@ -14,6 +14,7 @@ class ShowClass(models.Model):
     description = models.TextField()
     img = models.ImageField(upload_to="images")
     thumbnail = models.ImageField(upload_to="images", blank=True, null=True)
+    show_age = models.BooleanField()
 
     def preview_tag(self):
         return f'<img src="{self.thumbnail.url}"/>'
