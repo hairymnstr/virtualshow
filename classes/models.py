@@ -15,6 +15,9 @@ class ShowClass(models.Model):
     img = models.ImageField(upload_to="images")
     thumbnail = models.ImageField(upload_to="images", blank=True, null=True)
     show_age = models.BooleanField()
+    
+    class Meta:
+        verbose_name_plural = "show classes"
 
     def preview_tag(self):
         return f'<img src="{self.thumbnail.url}"/>'
@@ -214,6 +217,10 @@ class ClassEntry(models.Model):
     age = models.IntegerField(blank=True, null=True, help_text="Leave blank if you do not want to disclose!")
     entry_no = models.IntegerField(blank=True, help_text="Leave blank on new entries to take the next number")
 
+    class Meta:
+        verbose_name_plural = "class entries"
+        ordering = ["show_class", "entry_no"]
+
     def __str__(self):
         return self.title
     
@@ -235,3 +242,8 @@ class ClassEntry(models.Model):
                 break
             n = e
         return n
+    
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.entry_no = ClassEntry.objects.filter(show_class=self.show_class.pk).aggregate(models.Max('entry_no'))['entry_no__max']+1
+        super(ClassEntry, self).save(*args, **kwargs)
