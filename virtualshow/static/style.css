@@ -1,3 +1,21 @@
 .dark-blue-background {
     background: #003466;
 }
+
+.bg-first {
+    background: #bd1111;
+    color: white;
+}
+
+.bg-second {
+    background: #11a3bd;
+    color: white;
+}
+
+.bg-third {
+    background: #fffd7e;
+}
+
+.bg-commendation {
+    background: #ffb1fe;
+}

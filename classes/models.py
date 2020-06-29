@@ -114,6 +114,9 @@ class EntryImage(models.Model):
     thumbnail = models.ImageField(upload_to="images", blank=True, null=True)
     entry = models.ForeignKey('ClassEntry')
 
+    class Meta:
+        ordering = ['entry__show_class', 'entry__place', 'entry__entry_no', 'pk']
+
     def index_in_entry(self):
         entry_images = EntryImage.objects.filter(entry__pk=self.entry.pk)
         for x in range(entry_images.count()):
@@ -207,41 +210,35 @@ class EntryImage(models.Model):
         super(EntryImage, self).save(*args, **kwargs)
 
 class ClassEntry(models.Model):
+    FIRST_PLACE = 1
+    SECOND_PLACE = 2
+    THIRD_PLACE = 3
+    COMMENDATION = 4
+    UNPLACED = 99
+    PLACE_CHOICES = (
+        (FIRST_PLACE, 'First'),
+        (SECOND_PLACE, 'Second'),
+        (THIRD_PLACE, 'Third'),
+        (COMMENDATION, 'Commendation'),
+        (UNPLACED, 'Unplaced'),
+    )
     title = models.CharField(max_length=50)
     caption = models.TextField(blank=True, null=True)
     show_class = models.ForeignKey('ShowClass')
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     entrant = models.CharField(max_length=50, blank=True, null=True)
-    comments = models.TextField(blank=True, null=True)
+    comments = models.TextField(blank=True, null=True, help_text="Intended for judges comments")
     age = models.IntegerField(blank=True, null=True, help_text="Leave blank if you do not want to disclose!")
     entry_no = models.IntegerField(blank=True, help_text="Leave blank on new entries to take the next number")
+    place = models.IntegerField(choices=PLACE_CHOICES, default=UNPLACED)
 
     class Meta:
         verbose_name_plural = "class entries"
-        ordering = ["show_class", "entry_no"]
+        ordering = ["show_class", "place", "entry_no"]
 
     def __str__(self):
         return self.title
-    
-    def next_entry(self):
-        break_now = False
-        n = None
-        for e in ClassEntry.objects.filter(show_class=self.show_class.pk):
-            if break_now:
-                n = e
-                break
-            if e == self:
-                break_now = True
-        return n
-    
-    def previous_entry(self):
-        n = None
-        for e in ClassEntry.objects.filter(show_class=self.show_class.pk):
-            if e == self:
-                break
-            n = e
-        return n
     
     def save(self, *args, **kwargs):
         if not self.id:

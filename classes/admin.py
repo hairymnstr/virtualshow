@@ -10,9 +10,9 @@ class EntryImageInline(admin.TabularInline):
 class ClassEntryAdmin(admin.ModelAdmin):
     model = ClassEntry
     readonly_fields = ('modified', 'created')
-    fields = ('title', 'caption', ('created', 'modified'), 'show_class', 'entry_no', 'entrant', 'age', 'comments')
-    ordering = ('-created',)
-    list_display = ('title', 'entrant', 'age', 'modified','show_class', 'entry_no')
+    fields = ('title', 'caption', ('created', 'modified'), 'show_class', 'entry_no', 'entrant', 'age', 'place', 'comments')
+    ordering = ('show_class', 'entry_no')
+    list_display = ('title', 'entrant', 'age', 'modified', 'place', 'show_class', 'entry_no')
     inlines = [EntryImageInline]
 
 class ShowClassAdmin(admin.ModelAdmin):
