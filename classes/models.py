@@ -242,5 +242,9 @@ class ClassEntry(models.Model):
     
     def save(self, *args, **kwargs):
         if not self.id:
-            self.entry_no = ClassEntry.objects.filter(show_class=self.show_class.pk).aggregate(models.Max('entry_no'))['entry_no__max']+1
+            highest_entry = ClassEntry.objects.filter(show_class=self.show_class.pk).aggregate(models.Max('entry_no'))['entry_no__max']
+            if not highest_entry == None:
+                self.entry_no = highest_entry + 1
+            else:
+                self.entry_no = 1
         super(ClassEntry, self).save(*args, **kwargs)
