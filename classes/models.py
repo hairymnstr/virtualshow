@@ -214,12 +214,14 @@ class ClassEntry(models.Model):
     SECOND_PLACE = 2
     THIRD_PLACE = 3
     COMMENDATION = 4
+    BEST_GUINEA_PIG = 5
     UNPLACED = 99
     PLACE_CHOICES = (
         (FIRST_PLACE, 'First'),
         (SECOND_PLACE, 'Second'),
         (THIRD_PLACE, 'Third'),
-        (COMMENDATION, 'Commendation'),
+        (COMMENDATION, 'Highly Commended'),
+        (BEST_GUINEA_PIG, 'Best Guinea Pig'),
         (UNPLACED, 'Unplaced'),
     )
     title = models.CharField(max_length=50)
