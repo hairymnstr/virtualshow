@@ -13,9 +13,9 @@
     <body>
     {% block breadcrumbs %}{% endblock %}
 {% block header %}
-<div class='container-fluid mb-3' style='height: 200px;background-image: url("{% static "Sky.jpg" %}");background-size: cover;background-position:center'>
+<div class='container-fluid mb-3'>
 <div class='row'>
-    <img src="{% static "Oval Logo.gif" %}" alt="Stithians Show" class="mx-auto d-block" style='width: 300px'/>
+    <h1>Title bar</h1>
 </div>
 </div>
 {% endblock %}
@@ -23,8 +23,7 @@
 {% block content %}{% endblock %}
         </div>
         <div class="container-fluid text-white pt-3 pb-3 dark-blue-background">
-            <p class="text-center">Copyright &copy; 2020 Stithians Show</p>
-            <p class="text-center mb-0">Stithians Show is operated by Stithians Agricultural Association Limited. Company registered in England Number 785178. Registered Charity Number 1141715.</p>
+            <p class="text-center">Footer</p>
         </div>
 {% block footer %}{% endblock %}
     </body>
