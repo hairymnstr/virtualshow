@@ -1,5 +1,5 @@
 from django.contrib import admin
-from classes.models import ShowClass, ClassEntry, EntryImage
+from classes.models import ShowClass, ClassEntry, EntryImage, ShowSection
 # Register your models here.
 
 class EntryImageInline(admin.TabularInline):
@@ -17,8 +17,14 @@ class ClassEntryAdmin(admin.ModelAdmin):
 
 class ShowClassAdmin(admin.ModelAdmin):
     model = ShowClass
-    fields = ('name', 'slug', 'description', 'show_age')
+    fields = ('section', 'name', 'slug', 'description', 'show_age')
+    list_display = ('name', 'section')
+
+class ShowSectionAdmin(admin.ModelAdmin):
+    model = ShowSection
+    fields = ('name', 'slug', 'description')
     list_display = ('name',)
 
 admin.site.register(ClassEntry, ClassEntryAdmin)
 admin.site.register(ShowClass, ShowClassAdmin)
+admin.site.register(ShowSection, ShowSectionAdmin)

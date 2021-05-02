@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Virtual Stithians Show 2021{% endblock %}
+
+{% block breadcrumbs %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb mb-0 bg-white">
+        <li class="breadcrumb-item active" aria-current="page">Home</li>
+    </ol>
+</nav>
+{% if banner %}
+<div class='row'>
+    <div class="col bg-warning">
+        <p class='text-center mb-0'>{{banner|safe}}</p>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+{% block content %}
+
+<div class="row justify-content-center mb-3">
+<div class="list-group col-md-6">
+{% for section in showsection_list %}
+    <a href="/section/{{section.slug}}" class="list-group-item list-group-item-action flex-column text-center">
+        <h5 class="mb-1">{{section.name}}</h5>
+        <p class="mb-1">{{section.description}}</p>
+        <small>{{section.showclass_set.count}} classes</small>
+    </a>
+{% endfor %}
+</div>
+</div>
+{% endblock %}

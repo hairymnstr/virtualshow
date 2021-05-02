@@ -10,11 +10,25 @@ from django.core.files.uploadedfile import SimpleUploadedFile, UploadedFile
 import os, cgi
 
 # Create your models here.
+class ShowSection(models.Model):
+    name = models.CharField(max_length=256)
+    slug = models.SlugField(blank=True, unique=True)
+    description = models.TextField()
+    
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.id and self.slug == "":
+            self.slug = slugify(self.name[:ShowSection._meta.get_field('slug').max_length])
+        super(ShowSection, self).save(*args, **kwargs)
+
 class ShowClass(models.Model):
     name = models.CharField(max_length=256)
     slug = models.SlugField(blank=True, unique=True)
     description = models.TextField()
     show_age = models.BooleanField()
+    section = models.ForeignKey('ShowSection')
     
     class Meta:
         verbose_name_plural = "show classes"
@@ -23,7 +37,7 @@ class ShowClass(models.Model):
         return self.name
     
     def save(self, *args, **kwargs):
-        if not self.id and slug == "":
+        if not self.id and self.slug == "":
             self.slug = slugify(self.name[:ShowClass._meta.get_field('slug').max_length])
         super(ShowClass, self).save(*args, **kwargs)
 

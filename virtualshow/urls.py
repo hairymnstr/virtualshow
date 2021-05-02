@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from classes.views import EntryList, ClassList
+from classes.views import EntryList, ClassList, SectionList
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles import views
@@ -23,7 +23,8 @@ from django.contrib.staticfiles import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^class/(?P<slug>[-\w]+)/?$', EntryList.as_view()),
-    url(r'^$', ClassList.as_view()),
+    url(r'^section/(?P<slug>[-\w]+)/?$', ClassList.as_view()),
+    url(r'^$', SectionList.as_view()),
 ]
 
 if settings.DEBUG:
