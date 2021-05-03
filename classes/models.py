@@ -2,6 +2,7 @@ from django.db import models
 from django.db import IntegrityError
 from django.template.defaultfilters import slugify
 from django.conf import settings
+from django.contrib.auth.models import Group
 
 from PIL import Image
 from PIL import ExifTags
@@ -14,6 +15,7 @@ class ShowSection(models.Model):
     name = models.CharField(max_length=256)
     slug = models.SlugField(blank=True, unique=True)
     description = models.TextField()
+    group = models.ForeignKey(Group)
     
     def __str__(self):
         return self.name
