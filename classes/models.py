@@ -14,7 +14,7 @@ import os, cgi
 class ShowSection(models.Model):
     name = models.CharField(max_length=256)
     slug = models.SlugField(blank=True, unique=True)
-    description = models.TextField()
+    description = models.TextField(blank=True)
     group = models.ForeignKey(Group)
     
     def __str__(self):
