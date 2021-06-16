@@ -102,7 +102,7 @@ class EntryImage(models.Model):
             if ExifTags.TAGS[orientation]=='Orientation':
                 try:
                     exif=dict(image._getexif().items())
-                    print(exif)
+
                     if exif[orientation] == 3:
                         image = image.rotate(180, expand=True)
                     elif exif[orientation] == 6:
