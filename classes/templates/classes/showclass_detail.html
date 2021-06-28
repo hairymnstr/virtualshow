@@ -28,11 +28,13 @@
 {% endif %}
 <div class='col-sm-4 mb-4'>
     <div class='card'>
+        {% if showclass.section.show_results %}
         {% if entry.entry.place == 1 %}<div class='card-header bg-first'><strong>FIRST</strong></div>{% endif %}
         {% if entry.entry.place == 2 %}<div class='card-header bg-second'><strong>SECOND</strong></div>{% endif %}
         {% if entry.entry.place == 3 %}<div class='card-header bg-third'><strong>THIRD</strong></div>{% endif %}
         {% if entry.entry.place == 4 %}<div class='card-header bg-commendation'><strong>HIGHLY COMMENDED</strong></div>{% endif %}
         {% if entry.entry.place == 5 %}<div class='card-header bg-first'><strong>BEST GUINEA PIG</strong></div>{% endif %}
+        {% endif %}
         <a href='{{entry.img.url}}' data-size='{{entry.img.width}}x{{entry.img.height}}' data-med='{{entry.thumbnail.url}}' data-med-size='{{entry.thumbnail.width}}x{{entry.thumbnail.height}}'>
             <img src='{{entry.thumbnail.url}}' alt='{{entry.entry.caption}}' class='card-img-top' style='width:100%;height:50vh;object-fit:cover'/>
         </a>
@@ -40,9 +42,12 @@
             <h5 class='card-title'>{{entry.entry.title}}</h5>
             <p class='card-text'>{{entry.entry.caption}}</p>
             <p class='card-text'><small class='text-muted'>Entry no. {{entry.entry.entry_no}}{% if entry.entry.entryimage_set.all.count > 1 %}, picture {{entry.index_in_entry}} of {{entry.entry.entryimage_set.all.count}}{% endif %}</small></p>
+            {% if showclass.section.show_results %}<p class='card-text'><small class='text-muted'>Name: {{entry.entry.entrant}}</small></p>{% endif %}
             {% if showclass.show_age %}<p class='card-text'><small class='text-muted'>Age: {{entry.entry.age}}</small></p>{% endif %}
         </div>
+        {% if showclass.section.show_results %}
         {% if entry.entry.comments %}<div class='card-footer'><h6 class='card-title text-muted'>Judge's comments</h6><p class='card-text'>{{entry.entry.comments}}</p></div>{% endif %}
+        {% endif %}
     </div>
 </div>
 {% if forloop.last or forloop.counter|divisibleby:"3" %}

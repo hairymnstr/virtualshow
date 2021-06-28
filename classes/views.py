@@ -15,7 +15,11 @@ class EntryList(View):
     def get(self, request, slug, *args, **kwargs):
         if request.user.is_authenticated or settings.PUBLIC_VIEWING:
             showclass = get_object_or_404(ShowClass, slug=slug);
-            entries = EntryImage.objects.filter(entry__show_class__slug=slug)
+            if showclass.section.show_results:
+                entries = EntryImage.objects.filter(entry__show_class__slug=slug)
+            else:
+                # don't order by placing yet!
+                entries = EntryImage.objects.filter(entry__show_class__slug=slug).order_by('entry__entry_no')
             return render(request, self.template, {'entries': entries, 'showclass': showclass})
         else:
             raise PermissionDenied

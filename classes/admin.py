@@ -32,7 +32,7 @@ class ShowClassAdmin(admin.ModelAdmin):
 
 class ShowSectionAdmin(admin.ModelAdmin):
     model = ShowSection
-    fields = ('name', 'slug', 'description', 'group')
+    fields = ('name', 'slug', 'description', 'group', 'show_results')
     list_display = ('name',)
 
 admin.site.register(ClassEntry, ClassEntryAdmin)

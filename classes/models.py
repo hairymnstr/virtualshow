@@ -16,6 +16,7 @@ class ShowSection(models.Model):
     slug = models.SlugField(blank=True, unique=True)
     description = models.TextField(blank=True)
     group = models.ForeignKey(Group)
+    show_results = models.BooleanField(default=False)
     
     def __str__(self):
         return self.name
