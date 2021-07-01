@@ -29,6 +29,7 @@ class ClassList(View):
     
     def get(self, request, slug, *args, **kwargs):
         is_public = request.user.is_authenticated or settings.PUBLIC_VIEWING
+        banner = None
         if not is_public:
             banner = BANNER_EMBARGOED
         elif request.user.is_authenticated:
@@ -44,6 +45,7 @@ class SectionList(View):
 
     def get(self, request, *args, **kwargs):
         is_public = request.user.is_authenticated or settings.PUBLIC_VIEWING
+        banner = None
         if not is_public:
             banner = BANNER_EMBARGOED
         elif request.user.is_authenticated:
