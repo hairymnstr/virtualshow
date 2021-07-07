@@ -25,7 +25,7 @@
         <h5 class="mb-1">{{section.name}}</h5>
         <p class="mb-1">{{section.description}}</p>
         <p class="mb-1">
-            <small>{{section.showclass_set.count}} classes</small>
+            {% if section.showclass_set.count %}<small>{{section.showclass_set.count}} classes</small>{% endif %}
             {% if section.show_results %}<br/><small>Results available</small>{% endif %}
         </p>
     </a>
