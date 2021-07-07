@@ -15,6 +15,7 @@ class ShowSection(models.Model):
     name = models.CharField(max_length=256)
     slug = models.SlugField(blank=True, unique=True)
     description = models.TextField(blank=True)
+    static_content = models.TextField(blank=True)
     group = models.ForeignKey(Group)
     show_results = models.BooleanField(default=False)
     
