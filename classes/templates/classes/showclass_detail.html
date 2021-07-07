@@ -32,8 +32,8 @@
         {% if entry.entry.place == 1 %}<div class='card-header bg-first'><strong>FIRST</strong></div>{% endif %}
         {% if entry.entry.place == 2 %}<div class='card-header bg-second'><strong>SECOND</strong></div>{% endif %}
         {% if entry.entry.place == 3 %}<div class='card-header bg-third'><strong>THIRD</strong></div>{% endif %}
-        {% if entry.entry.place == 4 %}<div class='card-header bg-commendation'><strong>HIGHLY COMMENDED</strong></div>{% endif %}
-        {% if entry.entry.place == 5 %}<div class='card-header bg-first'><strong>BEST GUINEA PIG</strong></div>{% endif %}
+        {% if entry.entry.place < 98 %}<div class='card-header bg-first'><strong>{{ entry.entry.get_place_display|upper }}</strong></div>{% endif %}
+        {% if entry.entry.place == 98 %}<div class='card-header bg-commendation'><strong>HIGHLY COMMENDED</strong></div>{% endif %}
         {% endif %}
         <a href='{{entry.img.url}}' data-size='{{entry.img.width}}x{{entry.img.height}}' data-med='{{entry.thumbnail.url}}' data-med-size='{{entry.thumbnail.width}}x{{entry.thumbnail.height}}'>
             <img src='{{entry.thumbnail.url}}' alt='{{entry.entry.caption}}' class='card-img-top' style='width:100%;height:50vh;object-fit:cover'/>

@@ -191,15 +191,23 @@ class ClassEntry(models.Model):
     FIRST_PLACE = 1
     SECOND_PLACE = 2
     THIRD_PLACE = 3
-    COMMENDATION = 4
     BEST_GUINEA_PIG = 5
+    CHAMPION_DAIRY = 6
+    RESERVE_CHAMPION_DAIRY = 7
+    CHAMPION_BEEF = 8
+    RESERVE_CHAMPION_BEEF = 9
+    COMMENDATION = 98
     UNPLACED = 99
     PLACE_CHOICES = (
         (FIRST_PLACE, 'First'),
         (SECOND_PLACE, 'Second'),
         (THIRD_PLACE, 'Third'),
-        (COMMENDATION, 'Highly Commended'),
         (BEST_GUINEA_PIG, 'Best Guinea Pig'),
+        (CHAMPION_DAIRY, 'Champion Dairy'),
+        (RESERVE_CHAMPION_DAIRY, 'Reserve Champion Dairy'),
+        (CHAMPION_BEEF, 'Champion Beef'),
+        (RESERVE_CHAMPION_BEEF, 'Reserve Champion Beef'),
+        (COMMENDATION, 'Highly Commended'),
         (UNPLACED, 'Unplaced'),
     )
     title = models.CharField(max_length=50)
