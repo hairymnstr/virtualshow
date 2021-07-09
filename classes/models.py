@@ -197,6 +197,8 @@ class ClassEntry(models.Model):
     RESERVE_CHAMPION_DAIRY = 7
     CHAMPION_BEEF = 8
     RESERVE_CHAMPION_BEEF = 9
+    BEST_IN_SHOW = -10
+    RESERVE_BEST_IN_SHOW = -9
     COMMENDATION = 98
     UNPLACED = 99
     PLACE_CHOICES = (
@@ -208,6 +210,8 @@ class ClassEntry(models.Model):
         (RESERVE_CHAMPION_DAIRY, 'Reserve Champion Dairy'),
         (CHAMPION_BEEF, 'Champion Beef'),
         (RESERVE_CHAMPION_BEEF, 'Reserve Champion Beef'),
+        (BEST_IN_SHOW, 'Best In Show'),
+        (RESERVE_BEST_IN_SHOW, 'Reserve Best In Show'),
         (COMMENDATION, 'Highly Commended'),
         (UNPLACED, 'Unplaced'),
     )
