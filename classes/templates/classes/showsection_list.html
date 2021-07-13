@@ -23,7 +23,6 @@
 {% for section in showsection_list %}
     <a href="/section/{{section.slug}}" class="list-group-item list-group-item-action flex-column text-center">
         <h5 class="mb-1">{{section.name}}</h5>
-        <p class="mb-1">{{section.description}}</p>
         <p class="mb-1">
             {% if section.showclass_set.count %}<small>{{section.showclass_set.count}} classes</small>{% endif %}
             {% if section.show_results %}<br/><small>Results available</small>{% endif %}
